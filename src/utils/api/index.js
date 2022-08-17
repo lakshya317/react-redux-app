@@ -6,13 +6,11 @@ export const login = async (username, password) => {
     const path = "/login";
     //URL
     const url = host + path;
-
     //Body Object
     const reqBody = {
         username,
         password
     }
-
     //request
     try{
         const response = await fetch(url, {
@@ -20,10 +18,7 @@ export const login = async (username, password) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(reqBody)
         })
-
         const parsedResponse = await response.json();
-
-        console.log(parsedResponse);
 
         return parsedResponse;
     }
@@ -44,10 +39,7 @@ export const users = async (pageNum) => {
     //request
     try{
         const response = await fetch(`${url}?page=${pageNum}`)
-
         const parsedResponse = await response.json();
-
-        console.log(parsedResponse);
 
         return parsedResponse;
     }

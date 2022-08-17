@@ -1,0 +1,12 @@
+.header{
+    top:0;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 5px solid  #ffcd00;
+}
+
+.Shell-logo{
+    height: 30px;
+    margin: 15px;
+}

@@ -1,12 +1,16 @@
+:root {
+    --shell-red:#da291c;
+    --shell-yellow: #ffcd00;
+}
+
 .header{
     top:0;
-    width: 100vw;
-    flex-direction: row;
-    justify-content: flex-start;
-    border-bottom: 5px solid  #ffcd00;
+    width: 100%;
+    border-bottom: 5px solid var(--shell-yellow);
 }
 
 .Shell-logo{
     height: 30px;
     margin: 15px;
 }
+

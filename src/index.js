@@ -7,6 +7,8 @@ import { createStore } from 'redux'
 import reducer from './reducer';
 import middleware from './middleware';
 
+//TODO: Persist redux state using redux-persist
+
 const store = createStore(reducer, middleware)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

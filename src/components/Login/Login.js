@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom'
 import Header from '../Header/Header';
+import LoadingAnimation from '../Loading/Loading';
 import ErrorModal from '../Modal/ErrorModal';
 import Shell_Logo from "../../images/Shell_Logo.png"
 import "./Login.css"
 import {handleLogin} from "../../action/authentication"
-import {removeLoginError} from "../../action/loginError"
+import {removeDisplayError} from "../../action/displayError"
 
 const initialState = {
-    email: "",
-    password: "",
+    email: "eve.holt@reqres.in",
+    password: "12345678",
     isEmailValid: true,
     isPasswordValid: true,
     errorEmail: "",
@@ -103,10 +104,6 @@ const Login = (props) => {
         }
     }
 
-    const onModalClose = () => {
-        props.dispatch(removeLoginError());
-    }
-
     //Returns
 
     useEffect(()=>{
@@ -117,7 +114,7 @@ const Login = (props) => {
 
     return (
         <div className="login-container">
-            <ErrorModal errormessage={props.loginError} onHide={onModalClose} />
+            <ErrorModal errormessage={props.displayError} onHide={() => {props.dispatch(removeDisplayError());}} />
             <Header />
             <div className='login-body'>
                 <div className='login-form-container'>
@@ -147,7 +144,13 @@ const Login = (props) => {
                                 isPasswordValid? null
                                 : <span className="input-error">{errorPassword}</span>
                             }
-                            <input className="login-button" type="submit" />
+                            {
+                                props.loading ? 
+                                <div className='login-button'>
+                                    <LoadingAnimation variant="light"/>
+                                </div> :
+                                <input className="login-button" type="submit" />
+                            }
                         </form>
                     </div>
                 </div>
@@ -159,7 +162,13 @@ const Login = (props) => {
     )
 };
 
-export default connect((state)=>({
-    loggedIn: state.loggedIn,
-    loginError: state.loginError
-}))(Login);
+
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.loggedIn,
+        displayError: state.displayError,
+        loading: state.loading
+    }
+}
+
+export default connect(mapStateToProps)(Login);

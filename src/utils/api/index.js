@@ -6,7 +6,7 @@ class API{
 
     postLogin = async (username, password) => {
         //path
-        const path = "/login";
+        const path = "/login?delay=2";
         //URL
         const url = this.host + path;
         //Body Object
@@ -33,7 +33,7 @@ class API{
 
     postLogout = async () => {
         //path
-        const path = "/logout";
+        const path = "/logout?delay=2";
         //URL
         const url = this.host + path;
 

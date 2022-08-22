@@ -6,18 +6,13 @@ import Header from "../Header/Header"
 import { ReactComponent as ReactLogo } from '../../images/React.svg';
 import { ReactComponent as ReduxLogo } from '../../images/Redux.svg';
 import ErrorModal from '../Modal/ErrorModal';
-import {removeLoginError} from "../../action/loginError"
+import { removeDisplayError } from "../../action/displayError"
 
 
 const Landing = (props) => {
-
-    const onModalClose = () => {
-        props.dispatch(removeLoginError());
-    }
-
     return (
         <div className='landing'>
-            <ErrorModal errormessage={props.loginError} onHide={onModalClose} />
+            <ErrorModal errormessage={props.displayError} onHide={() => {props.dispatch(removeDisplayError());}} />
             <Header />
             <div className='landing-body'>
                 <div className='landing-title'>
@@ -50,5 +45,5 @@ const Landing = (props) => {
 }
 
 export default connect((state) => ({
-    loginError: state.loginError
+    displayError: state.displayError
 }))(Landing);

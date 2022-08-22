@@ -1,14 +1,18 @@
-import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import "./Dashboard.css"
-import {handleLogout} from "../../action/shared"
+import {handleLogout} from "../../action/authentication"
 
 const Dashboard = (props) => {
-    if(!props.loggedIn){
-        return(<Redirect push to="/" />)
-    }
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(!props.loggedIn){
+            navigate("/login")
+        }
+    }, [navigate, props.loggedIn])
 
     return (
         <div className="dashboard">
@@ -20,8 +24,8 @@ const Dashboard = (props) => {
                     <span className="welcome">!</span>
                 </div>
                 <div className="logout-button-container">
-                    <Link to="/" style={{ textDecoration: 'none' }} onClick={() => {props.dispatch(handleLogout())}}>
-                        <div className="logout-link-button">
+                    <Link to="/" style={{ textDecoration: 'none' }} className="logout-link" onClick={() => {props.dispatch(handleLogout())}}>
+                        <div className='logout-link-button'>
                             Logout
                         </div>
                     </Link>

@@ -1,14 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Landing.css'
 import Header from "../Header/Header"
 import { ReactComponent as ReactLogo } from '../../images/React.svg';
 import { ReactComponent as ReduxLogo } from '../../images/Redux.svg';
+import ErrorModal from '../Modal/ErrorModal';
+import {removeLoginError} from "../../action/loginError"
 
 
-const Landing = () => {
+const Landing = (props) => {
+
+    const onModalClose = () => {
+        props.dispatch(removeLoginError());
+    }
+
     return (
         <div className='landing'>
+            <ErrorModal errormessage={props.loginError} onHide={onModalClose} />
             <Header />
             <div className='landing-body'>
                 <div className='landing-title'>
@@ -29,8 +38,8 @@ const Landing = () => {
                     </div>
                 </div>
                 <div className="login-button-container">
-                    <Link to="/login" style={{ textDecoration: 'none' }}>
-                        <div className="login-link-button">
+                    <Link className='login-link' to="/login" style={{ textDecoration: 'none' }}>
+                        <div className='login-link-button'>
                             Login
                         </div>
                     </Link>
@@ -40,4 +49,6 @@ const Landing = () => {
     );
 }
 
-export default Landing;
+export default connect((state) => ({
+    loginError: state.loginError
+}))(Landing);

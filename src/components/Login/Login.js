@@ -1,169 +1,165 @@
-import React from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
 import Header from '../Header/Header';
+import ErrorModal from '../Modal/ErrorModal';
 import Shell_Logo from "../../images/Shell_Logo.png"
 import "./Login.css"
-import {handleLogin} from "../../action/shared"
+import {handleLogin} from "../../action/authentication"
+import {removeLoginError} from "../../action/loginError"
 
 const initialState = {
-    email: "eve.holt@reqres.in",
-    password: "cityslicka",
+    email: "",
+    password: "",
     isEmailValid: true,
     isPasswordValid: true,
     errorEmail: "",
     errorPassword: ""
 }
 
-class Login extends React.Component {
+const Login = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = initialState;
-    };
+    const [email, setEmail] = useState(initialState.email);
+    const [password, setPassword] = useState(initialState.password);
+    const [isEmailValid, setIsEmailValid] = useState(initialState.isEmailValid);
+    const [isPasswordValid, setIsPasswordValid] = useState(initialState.isPasswordValid);
+    const [errorEmail, setErrorEmail] = useState(initialState.errorEmail);
+    const [errorPassword, setErrorPassword] = useState(initialState.errorPassword);
 
-    handleChange = (event) => {
+    // Navigation
+    const navigate = useNavigate();
+
+    const handleChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
 
-        this.setState((prevState) => {
-            let newState = prevState;
-            newState[name] = value;
-            return newState;
-        }, () => {
-            if(!(this.state.isEmailValid && this.state.isPasswordValid)){
-                this.checkValidity()
-            }
-        })
+        if(name === "email"){
+            setEmail(value);
+        }
+
+        else if(name === "password"){
+            setPassword(value)
+        }
     }
 
-    checkValidity = () => {
-        const username = this.state.email;
-        const password = this.state.password;
+    const checkValidity = useCallback(() => {
+        const username = email;
+        const pass = password;
         let emailValid = false;
         let passValid = false;
 
         if(username === ""){
-            this.setState((prevState) => {
-                let newState = prevState;
-                newState.isEmailValid = false;
-                newState.errorEmail = "Username is Required"
-                return newState;
-            })
+            setIsEmailValid(false);
+            setErrorEmail("Username is Required");
         }
 
         else{
             let email_re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             
             if(username.toLowerCase().match(email_re)){
-                this.setState((prevState) => {
-                    let newState = prevState;
-                    newState.isEmailValid = true;
-                    return newState;
-                })
+                setIsEmailValid(true);
                 emailValid = true;
             }
 
             else{
-                this.setState((prevState) => {
-                    let newState = prevState;
-                    newState.isEmailValid = false;
-                    newState.errorEmail = "Invalid Username"
-                    return newState;
-                })
+                setIsEmailValid(false);
+                setErrorEmail("Invalid Username");
             }
         }
 
-        if(password === ""){
-            this.setState((prevState) => {
-                let newState = prevState;
-                newState.isPasswordValid = false;
-                newState.errorPassword = "Password is Required"
-                return newState;
-            })
+        if(pass === ""){
+            setIsPasswordValid(false);
+            setErrorPassword("Password is Required");
         }
 
         else{
-            if(password.length >= 8){
-                this.setState((prevState) => {
-                    let newState = prevState;
-                    newState.isPasswordValid = true;
-                    return newState;
-                })
+            if(pass.length >= 8){
+                setIsPasswordValid(true);
                 passValid = true;
             }
 
             else{
-                this.setState((prevState) => {
-                    let newState = prevState;
-                    newState.isPasswordValid = false;
-                    newState.errorPassword = "Password is too short"
-                    return newState;
-                })
+                setIsPasswordValid(false);
+                setErrorPassword("Password is too short");
             }
         }
 
         return emailValid && passValid
-    }
+    },[email, password])
 
-    handleSubmit = (event) => {
+    // Use Effect to check Validity after Email/Password have been marked invalid once
+    useEffect(()=>{
+        if(!(isEmailValid && isPasswordValid)){
+            checkValidity();
+        }
+    }, [email, password, checkValidity, isEmailValid, isPasswordValid]);
+
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        if(this.checkValidity()){
-            this.props.dispatch(handleLogin(this.state.email, this.state.password));
+        if(checkValidity()){
+            props.dispatch(handleLogin(email, password));
         }
     }
 
-    render() {
-        if(this.props.loggedIn){
-            // history.push("/home");
-            return(<Redirect push to="/home" />)
-        }
+    const onModalClose = () => {
+        props.dispatch(removeLoginError());
+    }
 
-        return (
-            <div className="login-container">
-                <Header />
-                <div className='login-body'>
-                    <div className='login-form-container'>
-                        <div className="form-box">
-                            <form className="form" onSubmit={this.handleSubmit}>
-                                <input 
-                                    className={`input-field${this.state.isEmailValid?"":" invalid-input"}`} 
-                                    name="email" 
-                                    value={this.state.email} 
-                                    type="text" 
-                                    placeholder='Email Address *' 
-                                    onChange = {this.handleChange}
-                                />
-                                {
-                                    this.state.isEmailValid? null
-                                    : <span className="input-error">{this.state.errorEmail}</span>
-                                }
-                                <input 
-                                    className={`input-field${this.state.isPasswordValid?"":" invalid-input"}`}
-                                    name="password" 
-                                    value={this.state.password} 
-                                    type="password" 
-                                    placeholder='Password *' 
-                                    onChange = {this.handleChange}
-                                />
-                                {
-                                    this.state.isPasswordValid? null
-                                    : <span className="input-error">{this.state.errorPassword}</span>
-                                }
-                                <input className="login-button" type="submit" />
-                            </form>
-                        </div>
-                    </div>
-                    <div className='watermark-container'>
-                        <img className="shell-watermark" src={Shell_Logo} alt="Shell Logo" />
+    //Returns
+
+    useEffect(()=>{
+        if(props.loggedIn){
+            navigate("/home")
+        }
+    }, [navigate, props.loggedIn])
+
+    return (
+        <div className="login-container">
+            <ErrorModal errormessage={props.loginError} onHide={onModalClose} />
+            <Header />
+            <div className='login-body'>
+                <div className='login-form-container'>
+                    <div className="form-box">
+                        <form className="form" onSubmit={handleSubmit}>
+                            <input 
+                                className={`input-field${isEmailValid?"":" invalid-input"}`} 
+                                name="email" 
+                                value={email} 
+                                type="text" 
+                                placeholder='Email Address *' 
+                                onChange = {handleChange}
+                            />
+                            {
+                                isEmailValid? null
+                                : <span className="input-error">{errorEmail}</span>
+                            }
+                            <input 
+                                className={`input-field${isPasswordValid?"":" invalid-input"}`}
+                                name="password" 
+                                value={password} 
+                                type="password" 
+                                placeholder='Password *' 
+                                onChange = {handleChange}
+                            />
+                            {
+                                isPasswordValid? null
+                                : <span className="input-error">{errorPassword}</span>
+                            }
+                            <input className="login-button" type="submit" />
+                        </form>
                     </div>
                 </div>
+                <div className='watermark-container'>
+                    <img className="shell-watermark" src={Shell_Logo} alt="Shell Logo" />
+                </div>
             </div>
-        )
-    };
-}
+        </div>
+    )
+};
 
 export default connect((state)=>({
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    loginError: state.loginError
 }))(Login);

@@ -31,6 +31,25 @@ class API{
 
     }
 
+    postLogout = async () => {
+        //path
+        const path = "/logout";
+        //URL
+        const url = this.host + path;
+
+        //request
+        try{
+            const response = await fetch(url, {
+                method: 'post'
+            })
+            
+            return response.status;
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
     getUsers = async (pageNum) => {
         //path
         const path = "/users"

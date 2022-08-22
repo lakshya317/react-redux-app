@@ -50,6 +50,10 @@
     flex-grow: 0.4;
 }
 
+.login-link{
+    align-self:flex-start;
+}
+
 .login-link-button{
     color: white;
     background-color: var(--shell-red);
@@ -58,4 +62,5 @@
     border: 2px solid var(--shell-red);
     border-radius: 4px;
 }
+
 

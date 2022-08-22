@@ -4,7 +4,7 @@ import "./Loading.css"
 function LoadingAnimation(props) {
     return (
         <div className="spinner-container">
-            <Spinner animation="border" role="status" variant={props.variant || "danger"}>
+            <Spinner animation="border" role="status" variant={props.variant || "danger"} size={props.size}>
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
         </div>

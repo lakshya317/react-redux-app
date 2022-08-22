@@ -147,7 +147,7 @@ const Login = (props) => {
                             {
                                 props.loading ? 
                                 <div className='login-button'>
-                                    <LoadingAnimation variant="light"/>
+                                    <LoadingAnimation variant="light" size="sm"/>
                                 </div> :
                                 <input className="login-button" type="submit" />
                             }

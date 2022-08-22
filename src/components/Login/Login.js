@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import Header from '../Header/Header';
 import LoadingAnimation from '../Loading/Loading';
@@ -19,14 +18,22 @@ const initialState = {
     errorPassword: ""
 }
 
-const Login = (props) => {
-
+const Login = () => {
+    //state
     const [email, setEmail] = useState(initialState.email);
     const [password, setPassword] = useState(initialState.password);
     const [isEmailValid, setIsEmailValid] = useState(initialState.isEmailValid);
     const [isPasswordValid, setIsPasswordValid] = useState(initialState.isPasswordValid);
     const [errorEmail, setErrorEmail] = useState(initialState.errorEmail);
     const [errorPassword, setErrorPassword] = useState(initialState.errorPassword);
+
+    //Redux State
+    const loggedIn = useSelector((state) => state.loggedIn)
+    const displayError = useSelector((state) => state.displayError)
+    const loading = useSelector((state) => state.loading)
+
+    //dispatch
+    const dispatch = useDispatch()
 
     // Navigation
     const navigate = useNavigate();
@@ -100,21 +107,21 @@ const Login = (props) => {
         event.preventDefault();
 
         if(checkValidity()){
-            props.dispatch(handleLogin(email, password));
+            dispatch(handleLogin(email, password));
         }
     }
 
     //Returns
 
     useEffect(()=>{
-        if(props.loggedIn){
+        if(loggedIn){
             navigate("/home")
         }
-    }, [navigate, props.loggedIn])
+    }, [navigate, loggedIn])
 
     return (
         <div className="login-container">
-            <ErrorModal errormessage={props.displayError} onHide={() => {props.dispatch(removeDisplayError());}} />
+            <ErrorModal errormessage={displayError} onHide={() => {dispatch(removeDisplayError());}} />
             <Header />
             <div className='login-body'>
                 <div className='login-form-container'>
@@ -145,7 +152,7 @@ const Login = (props) => {
                                 : <span className="input-error">{errorPassword}</span>
                             }
                             {
-                                props.loading ? 
+                                loading ? 
                                 <div className='login-button'>
                                     <LoadingAnimation variant="light" size="sm"/>
                                 </div> :
@@ -162,13 +169,4 @@ const Login = (props) => {
     )
 };
 
-
-const mapStateToProps = (state) => {
-    return {
-        loggedIn: state.loggedIn,
-        displayError: state.displayError,
-        loading: state.loading
-    }
-}
-
-export default connect(mapStateToProps)(Login);
+export default Login;

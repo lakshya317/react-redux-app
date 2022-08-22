@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Landing.css'
 import Header from "../Header/Header"
@@ -10,9 +10,16 @@ import { removeDisplayError } from "../../action/displayError"
 
 
 const Landing = (props) => {
+
+    //Redux State
+    const displayError = useSelector((state) => state.displayError)
+
+    //dispatch
+    const dispatch = useDispatch()
+
     return (
         <div className='landing'>
-            <ErrorModal errormessage={props.displayError} onHide={() => {props.dispatch(removeDisplayError());}} />
+            <ErrorModal errormessage={displayError} onHide={() => {dispatch(removeDisplayError());}} />
             <Header />
             <div className='landing-body'>
                 <div className='landing-title'>
@@ -44,6 +51,4 @@ const Landing = (props) => {
     );
 }
 
-export default connect((state) => ({
-    displayError: state.displayError
-}))(Landing);
+export default Landing;

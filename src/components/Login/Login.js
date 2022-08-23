@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useNavigate} from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import Header from '../Header/Header';
 import LoadingAnimation from '../Loading/Loading';
 import ErrorModal from '../Modal/ErrorModal';
@@ -34,9 +34,6 @@ const Login = () => {
 
     //dispatch
     const dispatch = useDispatch()
-
-    // Navigation
-    const navigate = useNavigate();
 
     const handleChange = (event) => {
         let name = event.target.name;
@@ -113,11 +110,9 @@ const Login = () => {
 
     //Returns
 
-    useEffect(()=>{
-        if(loggedIn){
-            navigate("/react-redux-app/home")
-        }
-    }, [navigate, loggedIn])
+    if(loggedIn){
+        return <Navigate to="/react-redux-app/home" replace/>
+    }
 
     return (
         <div className="login-container">

@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  main:
+  build:
     name: Install Dependencies & Deploy
     runs-on: windows-latest
     steps:
@@ -23,10 +23,44 @@ jobs:
           node-version: 12
 
       - name: Install Dependencies
-        run: npm install
+        run: npm i
 
-      - name: Build & Deploy React app to GitHub Pages
-        uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
+      - name: Build
+        run: npm run build
+
+      - name: Zip Build Folder
+        uses: vimtor/action-zip@v1
+        with:
+          files: build/
+          dest: github-pages.zip
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1.0.3
+
+  deploy:
+
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+
+      # - name: Build & Deploy React app to GitHub Pages
+      #   uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
 
 #       - name: Deploy
 #         run: |

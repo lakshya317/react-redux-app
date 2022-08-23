@@ -35,12 +35,12 @@ jobs:
           command: c
           files: |
             ./build
-          outPath: github-pages.tar.gz
+          outPath: ./zip/github-pages.tar.gz
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.3
         with:
-          path: ./
+          path: ./zip/
 
   deploy:
 
@@ -64,6 +64,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
 
 
       # - name: Build & Deploy React app to GitHub Pages

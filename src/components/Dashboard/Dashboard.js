@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import LoadingAnimation from '../Loading/Loading';
@@ -14,13 +14,10 @@ const Dashboard = () => {
 
     //dispatch
     const dispatch = useDispatch()
-    const navigate = useNavigate();
 
-    useEffect(()=>{
-        if(!loggedIn){
-            navigate("/react-redux-app/login")
-        }
-    }, [navigate, loggedIn])
+    if(!loggedIn){
+        return <Navigate to="/react-redux-app/login" replace/>
+    }
 
     return (
         <div className="dashboard">

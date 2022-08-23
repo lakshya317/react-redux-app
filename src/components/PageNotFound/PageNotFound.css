@@ -17,4 +17,9 @@
     display: flex;
     font-size: 30px;
     font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.loading-not-found{
+    display: flex;
 }

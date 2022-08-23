@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[![Continuous Deployment](https://github.com/lakshya317/react-redux-app/actions/workflows/ContinuousDeployment.yml/badge.svg)](https://github.com/lakshya317/react-redux-app/actions/workflows/ContinuousDeployment.yml)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

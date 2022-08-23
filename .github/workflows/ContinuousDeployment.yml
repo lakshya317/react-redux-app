@@ -35,12 +35,12 @@ jobs:
           command: c
           files: |
             ./build
-          outPath: ./zip/github-pages.tar.gz
+          outPath: github-pages.tar.gz
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.3
         with:
-          path: ./zip/
+          path: ./
 
   deploy:
 

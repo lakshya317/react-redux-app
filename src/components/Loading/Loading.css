@@ -1,0 +1,7 @@
+.spinner-container{
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}

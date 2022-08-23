@@ -75,5 +75,9 @@
     border: 2px solid var(--shell-red);
     border-radius: 4px;
     margin: 15px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 

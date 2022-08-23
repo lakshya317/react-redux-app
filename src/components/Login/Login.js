@@ -1,31 +1,39 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import Header from '../Header/Header';
+import LoadingAnimation from '../Loading/Loading';
 import ErrorModal from '../Modal/ErrorModal';
 import Shell_Logo from "../../images/Shell_Logo.png"
 import "./Login.css"
 import {handleLogin} from "../../action/authentication"
-import {removeLoginError} from "../../action/loginError"
+import {removeDisplayError} from "../../action/displayError"
 
 const initialState = {
-    email: "",
-    password: "",
+    email: "eve.holt@reqres.in",
+    password: "12345678",
     isEmailValid: true,
     isPasswordValid: true,
     errorEmail: "",
     errorPassword: ""
 }
 
-const Login = (props) => {
-
+const Login = () => {
+    //state
     const [email, setEmail] = useState(initialState.email);
     const [password, setPassword] = useState(initialState.password);
     const [isEmailValid, setIsEmailValid] = useState(initialState.isEmailValid);
     const [isPasswordValid, setIsPasswordValid] = useState(initialState.isPasswordValid);
     const [errorEmail, setErrorEmail] = useState(initialState.errorEmail);
     const [errorPassword, setErrorPassword] = useState(initialState.errorPassword);
+
+    //Redux State
+    const loggedIn = useSelector((state) => state.loggedIn)
+    const displayError = useSelector((state) => state.displayError)
+    const loading = useSelector((state) => state.loading)
+
+    //dispatch
+    const dispatch = useDispatch()
 
     // Navigation
     const navigate = useNavigate();
@@ -99,25 +107,21 @@ const Login = (props) => {
         event.preventDefault();
 
         if(checkValidity()){
-            props.dispatch(handleLogin(email, password));
+            dispatch(handleLogin(email, password));
         }
-    }
-
-    const onModalClose = () => {
-        props.dispatch(removeLoginError());
     }
 
     //Returns
 
     useEffect(()=>{
-        if(props.loggedIn){
-            navigate("/home")
+        if(loggedIn){
+            navigate("/react-redux-app/home")
         }
-    }, [navigate, props.loggedIn])
+    }, [navigate, loggedIn])
 
     return (
         <div className="login-container">
-            <ErrorModal errormessage={props.loginError} onHide={onModalClose} />
+            <ErrorModal errormessage={displayError} onHide={() => {dispatch(removeDisplayError());}} />
             <Header />
             <div className='login-body'>
                 <div className='login-form-container'>
@@ -147,7 +151,13 @@ const Login = (props) => {
                                 isPasswordValid? null
                                 : <span className="input-error">{errorPassword}</span>
                             }
-                            <input className="login-button" type="submit" />
+                            {
+                                loading ? 
+                                <div className='login-button'>
+                                    <LoadingAnimation variant="light" size="sm"/>
+                                </div> :
+                                <input className="login-button" type="submit" />
+                            }
                         </form>
                     </div>
                 </div>
@@ -159,7 +169,4 @@ const Login = (props) => {
     )
 };
 
-export default connect((state)=>({
-    loggedIn: state.loggedIn,
-    loginError: state.loginError
-}))(Login);
+export default Login;

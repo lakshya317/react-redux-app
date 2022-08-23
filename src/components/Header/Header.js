@@ -1,14 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 import Shell_Logo from "../../images/Shell_Logo.png"
 import "./Header.css"
 
 const Header = (props) => {
 
+    //Redux State
+    const loggedIn = useSelector((state) => state.loggedIn);
+
     var home = "/"
 
-    if(props.loggedIn){
+    if(loggedIn){
         home = "/home"
     }
 
@@ -21,6 +24,4 @@ const Header = (props) => {
     );
 }
 
-export default connect((state) => ({
-    loggedIn: state.loggedIn,
-}))(Header);
+export default Header;

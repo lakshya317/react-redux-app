@@ -22,63 +22,51 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install Dependencies
-        run: npm i
+      
+      - name: Build & Deploy React app to GitHub Pages
+        uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
 
-      - name: Build
-        run: npm run build
+  #     - name: Install Dependencies
+  #       run: npm i
 
-      - name: Compress action step
-        uses: a7ul/tar-action@v1.1.0
-        id: compress
-        with:
-          command: c
-          files: |
-            ./build
-          outPath: github-pages.tar.gz
+  #     - name: Build
+  #       run: npm run build
 
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1.0.3
-        with:
-          path: ./
+  #     - name: Compress action step
+  #       uses: a7ul/tar-action@v1.1.0
+  #       id: compress
+  #       with:
+  #         command: c
+  #         files: |
+  #           ./build
+  #         outPath: github-pages.tar.gz
 
-  deploy:
+  #     - name: Upload GitHub Pages artifact
+  #       uses: actions/upload-pages-artifact@v1.0.3
+  #       with:
+  #         path: ./
 
-    needs: build
+  # deploy:
 
-    name: Deploy
+  #   needs: build
 
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+  #   name: Deploy
 
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  #   # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+  #   permissions:
+  #     pages: write      # to deploy to Pages
+  #     id-token: write   # to verify the deployment originates from an appropriate source
 
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-        with:
-          token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+  #   # Deploy to the github-pages environment
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
 
-
-      # - name: Build & Deploy React app to GitHub Pages
-      #   uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
-
-#       - name: Deploy
-#         run: |
-#           git config --global user.name $user_name
-#           git config --global user.email $user_email
-#           git remote set-url origin https://${github_token}@github.com/${repository}
-#           npm run deploy
-#         env:
-#           user_name: 'github-actions[bot]'
-#           user_email: 'github-actions[bot]@users.noreply.github.com'
-#           github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-#           repository: ${{ github.repository }}
+  #   # Specify runner + deployment step
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v1
+  #       with:
+  #         token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}

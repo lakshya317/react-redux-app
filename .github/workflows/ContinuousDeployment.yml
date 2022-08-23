@@ -1,0 +1,25 @@
+# This is a basic workflow that is manually triggered
+
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  main:
+    name: Install Dependencies & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node v12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: npm install and deploy
+        run: |
+          npm install
+          npm run deploy

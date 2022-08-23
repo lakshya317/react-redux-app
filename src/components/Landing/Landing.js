@@ -23,7 +23,7 @@ const Landing = (props) => {
             <Header />
             <div className='landing-body'>
                 <div className='landing-title'>
-                    Welcome to a Login Screen made using
+                    Welcome to an Application made using:
                 </div>
                 <div className="stack-container">
                     <div className='stack-group'>
@@ -40,7 +40,7 @@ const Landing = (props) => {
                     </div>
                 </div>
                 <div className="login-button-container">
-                    <Link className='login-link' to="/login" style={{ textDecoration: 'none' }}>
+                    <Link className='login-link' to="/react-redux-app/login" style={{ textDecoration: 'none' }}>
                         <div className='login-link-button'>
                             Login
                         </div>

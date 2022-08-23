@@ -18,7 +18,7 @@ const Dashboard = () => {
 
     useEffect(()=>{
         if(!loggedIn){
-            navigate("/login")
+            navigate("/react-redux-app/login")
         }
     }, [navigate, loggedIn])
 

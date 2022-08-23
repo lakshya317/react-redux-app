@@ -115,7 +115,7 @@ const Login = () => {
 
     useEffect(()=>{
         if(loggedIn){
-            navigate("/home")
+            navigate("/react-redux-app/home")
         }
     }, [navigate, loggedIn])
 

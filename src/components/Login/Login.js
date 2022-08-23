@@ -10,8 +10,8 @@ import {handleLogin} from "../../action/authentication"
 import {removeDisplayError} from "../../action/displayError"
 
 const initialState = {
-    email: "eve.holt@reqres.in",
-    password: "12345678",
+    email: "",
+    password: "",
     isEmailValid: true,
     isPasswordValid: true,
     errorEmail: "",

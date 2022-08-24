@@ -4,14 +4,14 @@ import { Navigate } from 'react-router-dom'
 import Header from '../Header/Header';
 import LoadingAnimation from '../Loading/Loading';
 import ErrorModal from '../Modal/ErrorModal';
-import Shell_Logo from "../../images/Shell_Logo.png"
+import Shell_Logo from "../../assets/images/Shell_Logo.png"
 import "./Login.css"
 import {handleLogin} from "../../action/authentication"
 import {removeDisplayError} from "../../action/displayError"
 
 const initialState = {
-    email: "",
-    password: "",
+    email: "eve.holt@reqres.in",
+    password: "12345678",
     isEmailValid: true,
     isPasswordValid: true,
     errorEmail: "",

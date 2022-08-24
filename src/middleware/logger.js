@@ -1,7 +1,7 @@
-
-
 const logger = (store) => (next) => (action) => {
-    console.group(action.type)
+    let now = new Date();
+
+    console.group(action.type," ", now.toLocaleTimeString())
     
     console.log("The action is ", action.type)
     const result = next(action)

@@ -4,14 +4,11 @@ on:
   push:
     branches:
     - master
-  pull_request:
-    branches:
-    - master
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
@@ -22,15 +19,25 @@ jobs:
         with:
           node-version: 12
 
-      
-      - name: Build & Deploy React app to GitHub Pages
-        uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
+      - name: Build
+      run: |
+        npm install
+        npm run build
+      env:
+        REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
+        REACT_APP_API_HOST: ${{ secrets.REACT_APP_API_HOST }}
+        REACT_APP_PERSIST_STORE_ENCRYPTION_KEY: ${{ secrets.REACT_APP_PERSIST_STORE_ENCRYPTION_KEY }}
+        REACT_APP_PERSIST_CONFIG_SECRET: ${{ secrets.REACT_APP_PERSIST_CONFIG_SECRET }}
 
-  #     - name: Install Dependencies
-  #       run: npm i
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build
 
-  #     - name: Build
-  #       run: npm run build
+      # - name: Build & Deploy React app to GitHub Pages
+      #   uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
 
   #     - name: Compress action step
   #       uses: a7ul/tar-action@v1.1.0

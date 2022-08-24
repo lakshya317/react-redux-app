@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Landing.css'
 import Header from "../Header/Header"
-import { ReactComponent as ReactLogo } from '../../images/React.svg';
-import { ReactComponent as ReduxLogo } from '../../images/Redux.svg';
+import { ReactComponent as ReactLogo } from '../../assets/images/React.svg';
+import { ReactComponent as ReduxLogo } from '../../assets/images/Redux.svg';
 import ErrorModal from '../Modal/ErrorModal';
 import { removeDisplayError } from "../../action/displayError"
 
@@ -27,13 +27,13 @@ const Landing = (props) => {
                 </div>
                 <div className="stack-container">
                     <div className='stack-group'>
-                        <ReactLogo height={"100px"} width={"100px"} title={"React Logo"}/>
+                        <ReactLogo height={"100px"} width={"100px"} title={"React Logo"} className="no-tooltips"/>
                         <div className="stack-title">
                             React
                         </div>
                     </div>
                     <div className='stack-group'>
-                        <ReduxLogo height={"100px"} width={"100px"} title={"ReduxLogo"}/>
+                        <ReduxLogo height={"100px"} width={"100px"} title={"Redux Logo"} className="no-tooltips"/>
                         <div className="stack-title">
                             Redux
                         </div>

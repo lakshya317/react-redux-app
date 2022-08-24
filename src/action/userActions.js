@@ -1,7 +1,6 @@
 import { setAuthUser } from "./authUser";
 import API from "../utils/API";
 import { setLoading } from "./loading";
-import { setUsers } from "./users";
 import { setDisplayError } from "./displayError";
 
 export function handleGetAuthProfile(id) {
@@ -30,27 +29,6 @@ export function handleGetAuthProfile(id) {
                 console.log(err);
                 dispatch(setLoading(false));
                 dispatch(setDisplayError("Errors Connecting to Server!"));
-            })
-    }
-}
-
-export function handleGetUsers(pageNum, perPage) {
-    return (dispatch) => {
-        dispatch(setLoading(true));
-        API.getUsers(pageNum, perPage)
-            .then((response) => {
-                if (response.page === pageNum) {
-                    let usersData = {
-                        page: response.page,
-                        per_page: response.per_page,
-                        total: response.total,
-                        total_pages: response.total_pages,
-                        data: response.data
-                    }
-
-                    dispatch(setUsers(usersData));
-                    dispatch(setLoading(false));
-                }
             })
     }
 }

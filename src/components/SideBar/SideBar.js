@@ -6,9 +6,9 @@ import "./SideBar.css"
 const SideBar = () => {
 
     return (
-        <>
-            YOOOO
-        </>
+        <div className='sidebar-container'>
+            
+        </div>
     );
 }
 

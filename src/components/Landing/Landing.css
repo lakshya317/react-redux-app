@@ -9,7 +9,7 @@
 @font-face {
     font-family: "Verdana";
     src: local("Verdana"),
-    url("../../fonts/Verdana.ttf") format("truetype");
+    url("../../assets/fonts/Verdana.ttf") format("truetype");
 }
 
 .landing-body{
@@ -61,6 +61,10 @@
     padding: 5px 10px;
     border: 2px solid var(--shell-red);
     border-radius: 4px;
+}
+
+.no-tooltips {
+    pointer-events: none;
 }
 
 

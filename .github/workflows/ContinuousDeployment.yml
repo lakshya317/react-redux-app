@@ -4,14 +4,11 @@ on:
   push:
     branches:
     - master
-  pull_request:
-    branches:
-    - master
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
@@ -22,7 +19,6 @@ jobs:
         with:
           node-version: 12
 
-      
       - name: Build & Deploy React app to GitHub Pages
         uses: MrKrishnaAgarwal/deploy-react-app-to-gh-pages@v1.0.0
 

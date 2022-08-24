@@ -27,7 +27,7 @@ const Dashboard = () => {
                 <div className='dashboard-body'>
                     <div className="dash-title">
                         <span className="welcome">Welcome</span>
-                        <span className="user-title">{authUser}</span>
+                        <span className="user-title">{authUser.first_name}</span>
                         <span className="welcome">!</span>
                     </div>
                     <div className="logout-button-container">

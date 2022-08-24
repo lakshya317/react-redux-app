@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
-import Shell_Logo from "../../images/Shell_Logo.png"
+import Shell_Logo from "../../assets/images/Shell_Logo.png"
 import "./Header.css"
 
 const Header = (props) => {
@@ -9,10 +9,10 @@ const Header = (props) => {
     //Redux State
     const loggedIn = useSelector((state) => state.loggedIn);
 
-    var home = "/"
+    var home = "/react-redux-app"
 
     if(loggedIn){
-        home = "/home"
+        home = "/react-redux-app/home"
     }
 
     return (

@@ -50,7 +50,7 @@ class API{
         }
     }
 
-    getUsers = async (pageNum) => {
+    getUser = async (id) => {
         //path
         const path = "/users"
         //url
@@ -58,7 +58,25 @@ class API{
 
         //request
         try{
-            const response = await fetch(`${url}?page=${pageNum}`)
+            const response = await fetch(`${url}/${id}?delay=2`)
+            const parsedResponse = await response.json();
+
+            return parsedResponse.data;
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    getUsers = async (pageNum, perPage) => {
+        //path
+        const path = "/users"
+        //url
+        const url = this.host+path;
+
+        //request
+        try{
+            const response = await fetch(`${url}?delay=2&page=${pageNum}&per_page=${perPage}`)
             const parsedResponse = await response.json();
 
             return parsedResponse;

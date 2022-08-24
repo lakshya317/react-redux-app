@@ -9,6 +9,7 @@ export function handleGetAuthProfile(id) {
         dispatch(setLoading(true));
         API.getUser(id)
             .then((response) => {
+                // eslint-disable-next-line
                 if (response.id == id) {
                     let userData = {
                         id: response.id,
@@ -38,7 +39,7 @@ export function handleGetUsers(pageNum, perPage) {
         dispatch(setLoading(true));
         API.getUsers(pageNum, perPage)
             .then((response) => {
-                if (response.page == pageNum) {
+                if (response.page === pageNum) {
                     let usersData = {
                         page: response.page,
                         per_page: response.per_page,

@@ -1,8 +1,8 @@
 
 class API{
 
-    //reqres api
-    host = "https://reqres.in/api";
+    //HOST from .env
+    host = process.env.REACT_APP_API_HOST
 
     postLogin = async (username, password) => {
         //path

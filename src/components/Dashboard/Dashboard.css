@@ -1,26 +1,12 @@
-.dashboard{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    font-family: "Verdana";
-}
-
-.dashboard-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    flex: 1 1 auto;
-}
-
 .dash-title{
     display: flex;
     flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 .welcome{
-    margin: auto 20px;
     font-size: 60px;
     font-weight: 1000;
 }
@@ -30,19 +16,4 @@
     font-weight: 1000;
     color: var(--shell-red);
     font-style: italic;
-}
-
-.logout-button-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.logout-link-button{
-    color: white;
-    background-color: var(--shell-red);
-    font-weight: 600;
-    padding: 5px 10px;
-    border: 2px solid var(--shell-red);
-    border-radius: 4px;
 }

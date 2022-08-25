@@ -12,10 +12,9 @@ const Header = (props) => {
     const [show, setShow] = useState(false)
     const target = useRef(null);
     //Redux State
-    const { loggedIn, authUser, loading } = useSelector((state) => ({
+    const { loggedIn, authUser } = useSelector((state) => ({
         loggedIn: state.loggedIn,
         authUser: state.authUser,
-        loading: state.loading
     }));
     //Dispatch
     const dispatch = useDispatch();
@@ -31,7 +30,7 @@ const Header = (props) => {
                 <img className="Shell-logo" src={Shell_Logo} alt="Shell Logo" />
             </Link>
             {
-                (!loggedIn || loading) ? null :
+                (!loggedIn || !authUser.id) ? null :
                     <div className="profile-overlay-trigger">
                         <img src={authUser.avatar} alt="Avatar" className="profile-avatar" onClick={() => setShow(!show)} ref={target} />
                         <Overlay show={show} placement="bottom" target={target} rootClose onHide={() => setShow(false)} offset={[-20,20]}>

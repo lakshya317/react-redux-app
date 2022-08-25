@@ -17,6 +17,10 @@
     padding: 20px;
 }
 
+.user-card-container:hover{
+    cursor: pointer;
+}
+
 .user-card-container{
     display: flex;
     flex-direction: row;

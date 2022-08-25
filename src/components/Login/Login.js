@@ -9,13 +9,27 @@ import "./Login.css"
 import {handleLogin} from "../../action/authentication"
 import {removeDisplayError} from "../../action/displayError"
 
-const initialState = {
-    email: "eve.holt@reqres.in",
-    password: "12345678",
-    isEmailValid: true,
-    isPasswordValid: true,
-    errorEmail: "",
-    errorPassword: ""
+var initialState = {};
+
+if(process.env.REACT_APP_ENV === "development"){
+    initialState = {
+        email: "janet.weaver@reqres.in",
+        password: "12345678",
+        isEmailValid: true,
+        isPasswordValid: true,
+        errorEmail: "",
+        errorPassword: ""
+    }
+}
+else{
+    initialState = {
+        email: "",
+        password: "",
+        isEmailValid: true,
+        isPasswordValid: true,
+        errorEmail: "",
+        errorPassword: ""
+    }
 }
 
 const Login = () => {

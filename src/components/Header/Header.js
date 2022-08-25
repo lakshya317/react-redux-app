@@ -32,7 +32,7 @@ const Header = (props) => {
             {
                 (!loggedIn || !authUser.id) ? null :
                     <div className="profile-overlay-trigger">
-                        <img src={authUser.avatar} alt="Avatar" className="profile-avatar" onClick={() => setShow(!show)} ref={target} />
+                        <img src={authUser.avatar} alt="Avatar" className="auth-profile-avatar" onClick={() => setShow(!show)} ref={target} />
                         <Overlay show={show} placement="bottom" target={target} rootClose onHide={() => setShow(false)} offset={[-20,20]}>
                             <div className="overlay-container">
                                 <div className='overlay-header'>

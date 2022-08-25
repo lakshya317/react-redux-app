@@ -6,6 +6,7 @@ import AuthPage from "./AuthPage/AuthPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PageNotFound from "./PageNotFound/PageNotFound";
 import UserList from "./UserList/UserList";
+import Profile from "../Profile/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="" element={<AuthPage/>}>
             <Route exact path="home" element={<Dashboard/>} />
             <Route exact path="users" element={<UserList/>} />
+            <Route exact path="users/:userId" element={<Profile/>} />
           </Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />

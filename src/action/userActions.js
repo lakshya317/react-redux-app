@@ -2,6 +2,7 @@ import { setAuthUser } from "./authUser";
 import API from "../utils/API";
 import { setLoading } from "./loading";
 import { setDisplayError } from "./displayError";
+import { setLoggedIn } from "./loggedIn";
 
 export function handleGetAuthProfile(id) {
     return (dispatch) => {
@@ -28,6 +29,7 @@ export function handleGetAuthProfile(id) {
             .catch((err) => {
                 console.log(err);
                 dispatch(setLoading(false));
+                dispatch(setLoggedIn(false));
                 dispatch(setDisplayError("Errors Connecting to Server!"));
             })
     }

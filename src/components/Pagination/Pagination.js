@@ -6,20 +6,26 @@ import RightDoubleArrow from "../../assets/icons/right-double-arrow.png";
 import LeftDoubleArrow from "../../assets/icons/left-double-arrow.png";
 
 const Pagination = (props) => {
-    //props take current, totalPages, handlePageChange, perPage & total
-    const {current, perPage, handlePageChange, totalPages, total} = props;
+    const {perPage, handlePageChange, totalPages, total} = props;
+    const current = parseInt(props.current)
+
+    const pageChange = (newPage) => {
+        if(!(newPage < 1 || newPage > totalPages)){
+            handlePageChange(newPage);
+        }
+    }
     return (
         <div className='pagination-container'>
             <div className="pagination-main">
-                <img className="page-arrow" src={LeftDoubleArrow} alt={"First"} onClick={() => handlePageChange(1)} />
-                <img className="page-arrow" src={LeftArrow} alt={"Previous"} onClick={() => handlePageChange(current - 1)} />
+                <img className="page-arrow" src={LeftDoubleArrow} alt={"First"} onClick={() => pageChange(1)} />
+                <img className="page-arrow" src={LeftArrow} alt={"Previous"} onClick={() => pageChange(current - 1)} />
                     {
                     Array.from(Array(totalPages).keys()).map((index) => {
                         let page = index + 1;
                         return (
                             <div
                                 className={`page-number${page === current ? " current-page" : ""}`}
-                                onClick={() => handlePageChange(page)}
+                                onClick={() => pageChange(page)}
                                 key={index}
                             >
                                 {page}
@@ -29,8 +35,8 @@ const Pagination = (props) => {
     
                     })
                     }
-                <img className="page-arrow" src={RightArrow} alt={"Next"} onClick={() => handlePageChange(current + 1)} />
-                <img className="page-arrow" src={RightDoubleArrow} alt={"Last"} onClick={() => handlePageChange(props.totalPages)} />
+                <img className="page-arrow" src={RightArrow} alt={"Next"} onClick={() => pageChange(current + 1)} />
+                <img className="page-arrow" src={RightDoubleArrow} alt={"Last"} onClick={() => pageChange(props.totalPages)} />
             </div>
             <div className="pagination-summary">
                 {`Showing ${1+ (perPage * (current-1))} - ${perPage*current} of ${total}`}

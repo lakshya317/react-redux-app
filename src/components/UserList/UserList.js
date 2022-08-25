@@ -12,11 +12,8 @@ const UserList = () => {
     //searchParam
     const [searchParams, setSearchParams] = useSearchParams();
     const ITEMS_PER_PAGE = 4;
-    //read page from search params if exists
-    const initialPage = parseInt(searchParams.get("page")) || 1
     //state
     const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(initialPage)
     const [userData, setUserData] = useState([]);
     const [total, setTotal] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
@@ -26,6 +23,14 @@ const UserList = () => {
 
     //Call API on page change
     useEffect(()=>{
+        let page = 1;
+        if(searchParams.get("page")){
+            page = parseInt(searchParams.get("page"));
+        }
+        else{
+            setSearchParams({"page": 1})
+        }
+        
         setLoading(true);
         API.getUsers(page, ITEMS_PER_PAGE)
             .then((response) => {
@@ -46,30 +51,25 @@ const UserList = () => {
                 dispatch(setDisplayError("Errors Connecting to Server!"));
                 setLoading(false);
             })
-    }, [page, dispatch])
-
-    // Update Search Params on Page Change
-    useEffect(()=>{
-        setSearchParams({"page": page})
-    },[page, setSearchParams])
+    }, [dispatch, searchParams, setSearchParams])
 
     const handlePageChange = (newPage) => {
-        setPage(newPage);
+        setSearchParams({"page": newPage});
     }
 
-    //Update page on Search Param change
-    useEffect(()=>{
-        setPage(parseInt(searchParams.get("page")))
-    },[searchParams])
-
-    // Returns
     // if(loading){
-    //     return <LoadingAnimation/>
+    //     return(
+    //         <LoadingAnimation/>
+    //     )
     // }
+
     return (
         <div className='users-container'>
             {
-                loading ? <LoadingAnimation/> :
+                loading ? 
+                <div className='users-card-container'>
+                    <LoadingAnimation/>
+                </div> :
                 <div className='users-card-container'>
                     {
                         userData.map((user) => {
@@ -80,7 +80,7 @@ const UserList = () => {
             }
             <div className="pagination-container">
                 <Pagination 
-                    current={page} 
+                    current={searchParams.get("page")} 
                     totalPages={totalPages} 
                     handlePageChange={handlePageChange} 
                     perPage={ITEMS_PER_PAGE} 

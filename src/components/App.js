@@ -2,9 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
-//import Home from "./Home/Home";
+import AuthPage from "./AuthPage/AuthPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PageNotFound from "./PageNotFound/PageNotFound";
+import UserList from "./UserList/UserList";
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
         <Route path="react-redux-app">
           <Route exact path="" element={<Landing/>} />
           <Route exact path="login" element={<Login/>} />
-          <Route exact path="home" element={<Dashboard/>}/>
+          <Route exact path="" element={<AuthPage/>}>
+            <Route exact path="home" element={<Dashboard/>} />
+            <Route exact path="users" element={<UserList/>} />
+          </Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

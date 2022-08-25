@@ -14,7 +14,7 @@ export function handleLogin(username, password) {
                 if (response.token) {
                     dispatch(setLoggedIn(true));
                     dispatch(setLoading(false));
-                    dispatch(handleGetAuthProfile(response.token.slice(-1)))
+                    dispatch(handleGetAuthProfile(response.token.slice(1+response.token.indexOf("X"))))
                     localStorage.setItem("token", response.token)
                 }
                 else {

@@ -57,6 +57,11 @@ const UserList = () => {
         setPage(newPage);
     }
 
+    //Update page on Search Param change
+    useEffect(()=>{
+        setPage(parseInt(searchParams.get("page")))
+    },[searchParams])
+
     // Returns
     // if(loading){
     //     return <LoadingAnimation/>

@@ -1,15 +1,14 @@
-import logger from "./logger";
-import { applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import logger from './logger';
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 const appEnv = process.env.REACT_APP_ENV;
-var middleware
+var middleware;
 
-if(appEnv === "development" || appEnv === "test"){
+if (appEnv === 'development' || appEnv === 'test') {
     middleware = applyMiddleware(thunk, logger);
-}
-else{
+} else {
     middleware = applyMiddleware(thunk);
 }
 
-export default middleware
+export default middleware;

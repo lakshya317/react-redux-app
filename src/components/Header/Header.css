@@ -1,10 +1,10 @@
 :root {
-    --shell-red:#da291c;
+    --shell-red: #da291c;
     --shell-yellow: #ffcd00;
 }
 
-.header{
-    top:0;
+.header {
+    top: 0;
     width: 100%;
     border-bottom: 5px solid var(--shell-yellow);
     display: flex;
@@ -12,24 +12,24 @@
     justify-content: space-between;
 }
 
-.Shell-logo{
+.Shell-logo {
     height: 35px;
     margin: 15px 40px;
 }
 
-.profile-overlay-trigger{
+.profile-overlay-trigger {
     display: flex;
     margin: auto 30px;
 }
 
-.auth-profile-avatar{
+.auth-profile-avatar {
     border-radius: 50%;
     height: 40px;
     width: 40px;
-    outline: 3px solid var(--bs-body-color);;
+    outline: 3px solid var(--bs-body-color);
 }
 
-.overlay-container{
+.overlay-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,51 +37,50 @@
     background-color: white;
     width: 250px;
     border-radius: 10px;
-    font-family: "Verdana";
-    padding: 20px
+    font-family: 'Verdana';
+    padding: 20px;
 }
 
-.overlay-header{
+.overlay-header {
     padding: 10px;
     font-size: 20px;
     font-weight: 700;
 }
 
-.overlay-header-name{
+.overlay-header-name {
     color: var(--shell-red);
 }
 
-.overlay-header-email{
+.overlay-header-email {
     color: var(--bs-body-color);
     font-size: 12px;
 }
 
-.overlay-item{
+.overlay-item {
     border-top: 1px solid gray;
     padding: 10px;
     display: flex;
     flex-direction: row;
 }
 
-.overlay-link{
+.overlay-link {
     display: flex;
     align-self: flex-start;
     flex-direction: row;
     align-items: center;
 }
 
-.profile-link{
+.profile-link {
     color: var(--bs-body-color);
     font-weight: 600;
 }
 
-.logout-link{
+.logout-link {
     color: var(--shell-red);
     font-weight: 600;
 }
 
-.link-icon{
+.link-icon {
     height: 15px;
     margin-right: 5px;
 }
-

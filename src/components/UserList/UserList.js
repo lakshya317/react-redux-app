@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import LoadingAnimation from '../Loading/Loading';
-import API from "../../utils/API";
+import API from '../../utils/API';
 import UserCard from './UserCard';
 import Pagination from '../Pagination/Pagination';
-import {setDisplayError} from "../../action/displayError"
-import "./Users.css"
+import { setDisplayError } from '../../action/displayError';
+import './Users.css';
 
 const UserList = () => {
     const ITEMS_PER_PAGE = 4;
@@ -20,58 +20,55 @@ const UserList = () => {
     const dispatch = useDispatch();
 
     //Call API on page change
-    useEffect(()=>{
+    useEffect(() => {
         setLoading(true);
         API.getUsers(page, ITEMS_PER_PAGE)
             .then((response) => {
                 //eslint-disable-next-line
-                if(response.page == page && response.per_page === ITEMS_PER_PAGE){
+                if (response.page == page && response.per_page === ITEMS_PER_PAGE) {
                     setUserData(response.data);
                     setTotal(response.total);
                     setTotalPages(response.total_pages);
                     setLoading(false);
-                }
-                else{
-                    throw new Error("Invalid Response!");
+                } else {
+                    throw new Error('Invalid Response!');
                 }
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err);
-                dispatch(setDisplayError("Errors Connecting to Server!"));
+                dispatch(setDisplayError('Errors Connecting to Server!'));
                 setLoading(false);
-            })
-    }, [dispatch, page])
+            });
+    }, [dispatch, page]);
 
     const handlePageChange = (newPage) => {
         setPage(newPage);
-    }
+    };
 
     return (
-        <div className='users-container'>
-            {
-                loading ? 
-                <div className='users-card-container'>
-                    <LoadingAnimation/>
-                </div> :
-                <div className='users-card-container'>
-                    {
-                        userData.map((user) => {
-                            return <UserCard key={user.id} user={user}/>
-                        })
-                    }
+        <div className="users-container">
+            {loading ? (
+                <div className="users-card-container">
+                    <LoadingAnimation />
                 </div>
-            }
+            ) : (
+                <div className="users-card-container">
+                    {userData.map((user) => {
+                        return <UserCard key={user.id} user={user} />;
+                    })}
+                </div>
+            )}
             <div className="pagination-container">
-                <Pagination 
-                    current={page} 
-                    totalPages={totalPages} 
-                    handlePageChange={handlePageChange} 
-                    perPage={ITEMS_PER_PAGE} 
+                <Pagination
+                    current={page}
+                    totalPages={totalPages}
+                    handlePageChange={handlePageChange}
+                    perPage={ITEMS_PER_PAGE}
                     total={total}
                 />
             </div>
         </div>
     );
-}
+};
 
 export default UserList;

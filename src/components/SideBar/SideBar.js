@@ -9,8 +9,8 @@ const SideBar = () => {
 
     return (
         <div className='sidebar-container'>
-            <SideBarItem path={"/react-redux-app/home"} icon={HomeIcon} alt={"Home"} title={"Home"} />
-            <SideBarItem path={"/react-redux-app/users"} icon={UsersIcon} alt={"Users"} title={"Users"} />
+            <SideBarItem path={"/home"} icon={HomeIcon} alt={"Home"} title={"Home"} />
+            <SideBarItem path={"/users"} icon={UsersIcon} alt={"Users"} title={"Users"} />
         </div>
     );
 }

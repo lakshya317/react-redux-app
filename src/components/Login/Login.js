@@ -125,7 +125,7 @@ const Login = () => {
     //Returns
 
     if(loggedIn){
-        return <Navigate to="/react-redux-app/home" replace/>
+        return <Navigate to="/home" replace/>
     }
 
     return (

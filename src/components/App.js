@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
@@ -12,15 +12,12 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route exact path="" element={<Navigate to="/react-redux-app" replace/>}/>
-        <Route path="react-redux-app">
-          <Route exact path="" element={<Landing/>} />
-          <Route exact path="login" element={<Login/>} />
-          <Route exact path="" element={<AuthPage/>}>
-            <Route exact path="home" element={<Dashboard/>} />
-            <Route exact path="users" element={<UserList/>} />
-            <Route exact path="users/:userId" element={<Profile/>} />
-          </Route>
+        <Route exact path="" element={<Landing/>} />
+        <Route exact path="login" element={<Login/>} />
+        <Route exact path="" element={<AuthPage/>}>
+          <Route exact path="home" element={<Dashboard/>} />
+          <Route exact path="users" element={<UserList/>} />
+          <Route exact path="users/:userId" element={<Profile/>} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

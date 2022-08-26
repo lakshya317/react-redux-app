@@ -40,7 +40,7 @@ const Landing = (props) => {
                     </div>
                 </div>
                 <div className="login-button-container">
-                    <Link className='login-link' to="/react-redux-app/login" style={{ textDecoration: 'none' }}>
+                    <Link className='login-link' to="/login" style={{ textDecoration: 'none' }}>
                         <div className='login-link-button'>
                             Login
                         </div>

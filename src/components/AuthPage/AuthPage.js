@@ -15,7 +15,7 @@ const AuthPage = () => {
 
     if(!loggedIn){
         dispatch(setDisplayError("Login to continue"));
-        return <Navigate to="/react-redux-app/login" replace/>
+        return <Navigate to="/login" replace/>
     }
 
     return (

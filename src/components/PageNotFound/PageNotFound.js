@@ -9,7 +9,7 @@ const PageNotFound = () => {
 
     useEffect(()=>{
         setTimeout(()=>{
-            navigate("/react-redux-app/")
+            navigate("/")
         }, 2000)
     },[navigate])
 

@@ -40,12 +40,12 @@ export function handleLogin(username, password) {
 
 export function handleLogout() {
     return (dispatch) => {
+        //Logout
+        dispatch(setAuthUser({}));
+        dispatch(setLoggedIn(false));
         dispatch(setLoading(true));
         API.postLogout()
             .then((status) => {
-                //Logout
-                dispatch(setAuthUser({}));
-                dispatch(setLoggedIn(false));
                 dispatch(setLoading(false));
                 localStorage.removeItem("token");
                 if (status !== 200) {

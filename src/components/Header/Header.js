@@ -19,9 +19,9 @@ const Header = (props) => {
     //Dispatch
     const dispatch = useDispatch();
     //Set Redirect Link for Logo
-    var home = "/react-redux-app"
+    var home = "/"
     if (loggedIn) {
-        home = "/react-redux-app/home"
+        home = "/home"
     }
 
     return (
@@ -41,7 +41,7 @@ const Header = (props) => {
                                     {/* <span className='overlay-header-email'>{authUser.email}</span> */}
                                 </div>
                                 <div className='overlay-item'>
-                                    <Link to={`/react-redux-app/users/${authUser.id}`} className="overlay-link" style={{ textDecoration: 'none' }}>
+                                    <Link to={`/users/${authUser.id}`} className="overlay-link" style={{ textDecoration: 'none' }}>
                                         <img src={ProfileIcon} alt={"Profile"} className="link-icon"/>
                                         <div className="profile-link">
                                             Profile
@@ -49,7 +49,7 @@ const Header = (props) => {
                                     </Link>
                                 </div>
                                 <div className='overlay-item'>
-                                    <Link to={"/react-redux-app"} className="overlay-link" style={{ textDecoration: 'none' }} onClick={() => { dispatch(handleLogout()) }}>
+                                    <Link to={"/"} className="overlay-link" style={{ textDecoration: 'none' }} onClick={() => { dispatch(handleLogout()) }}>
                                         <img src={LogoutIcon} alt={"Logout"} className="link-icon"/>
                                         <div className="logout-link">
                                             Logout

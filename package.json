@@ -21,14 +21,14 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
         "start": "react-scripts start",
         "build": "react-scripts build",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
         "test": "react-scripts test",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
-        "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json"
+        "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json"
     },
     "eslintConfig": {
         "extends": [

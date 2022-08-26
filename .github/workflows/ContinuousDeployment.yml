@@ -54,7 +54,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: 
+          token: ${{ secrets.PAT }}
           repository-name: lakshya317/lakshya317.github.io
           branch: master
           folder: 'site' # The deployment folder should match the name of the artifact. Even though our project builds into the 'build' folder the artifact name of 'site' must be placed here.

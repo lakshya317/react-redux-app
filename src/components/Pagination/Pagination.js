@@ -6,8 +6,7 @@ import RightDoubleArrow from "../../assets/icons/right-double-arrow.png";
 import LeftDoubleArrow from "../../assets/icons/left-double-arrow.png";
 
 const Pagination = (props) => {
-    const {perPage, handlePageChange, totalPages, total} = props;
-    const current = parseInt(props.current)
+    const {current, perPage, handlePageChange, totalPages, total} = props;
 
     const pageChange = (newPage) => {
         if(!(newPage < 1 || newPage > totalPages)){

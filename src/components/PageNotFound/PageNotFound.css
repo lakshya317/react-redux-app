@@ -1,4 +1,4 @@
-.page-body{
+.page-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,20 +6,20 @@
     flex: 1 1 auto;
 }
 
-.page-title{
+.page-title {
     display: flex;
     font-size: 60px;
     font-weight: 1000;
     margin-bottom: 40px;
 }
 
-.page-title-sm{
+.page-title-sm {
     display: flex;
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 40px;
 }
 
-.loading-not-found{
+.loading-not-found {
     display: flex;
 }

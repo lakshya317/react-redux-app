@@ -1,4 +1,4 @@
-.dash-title{
+.dash-title {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -6,12 +6,12 @@
     align-items: center;
 }
 
-.welcome{
+.welcome {
     font-size: 60px;
     font-weight: 1000;
 }
 
-.user-title{
+.user-title {
     font-size: 60px;
     font-weight: 1000;
     color: var(--shell-red);

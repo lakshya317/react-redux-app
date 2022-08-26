@@ -1,10 +1,10 @@
-import { SET_LOGGED_IN } from '../action/loggedIn'
+import { SET_LOGGED_IN } from '../action/loggedIn';
 
-export default function loggedIn(state=false, action){
-    switch(action.type){
+export default function loggedIn(state = false, action) {
+    switch (action.type) {
         case SET_LOGGED_IN:
-            return action.loggedIn
+            return action.loggedIn;
         default:
-            return state
+            return state;
     }
 }

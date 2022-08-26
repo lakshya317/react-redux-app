@@ -1,7 +1,7 @@
 {
   "name": "react-redux-app",
   "version": "0.2.0",
-  "homepage": "https://lakshya317.github.io/react-redux-app",
+  "homepage": "https://lakshya317.github.io/",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

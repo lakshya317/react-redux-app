@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route exact path="" element={<Navigate to="/react-redux-app" replace/>}/>
         <Route path="react-redux-app">
@@ -24,7 +24,7 @@ function App() {
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

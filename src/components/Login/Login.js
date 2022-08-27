@@ -138,7 +138,7 @@ const Login = () => {
                                 type="text"
                                 placeholder="Email Address *"
                                 onChange={handleChange}
-                                data-testid={"username-input"}
+                                data-testid={'username-input'}
                             />
                             {isEmailValid ? null : (
                                 <span className="input-error">{errorEmail}</span>
@@ -150,7 +150,7 @@ const Login = () => {
                                 type="password"
                                 placeholder="Password *"
                                 onChange={handleChange}
-                                data-testid={"password-input"}
+                                data-testid={'password-input'}
                             />
                             {isPasswordValid ? null : (
                                 <span className="input-error">{errorPassword}</span>
@@ -160,7 +160,12 @@ const Login = () => {
                                     <LoadingAnimation variant="light" size="sm" />
                                 </div>
                             ) : (
-                                <input className="login-button" type="submit" name="login" value="Login" />
+                                <input
+                                    className="login-button"
+                                    type="submit"
+                                    name="login"
+                                    value="Login"
+                                />
                             )}
                         </form>
                     </div>

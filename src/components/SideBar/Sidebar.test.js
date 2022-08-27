@@ -3,27 +3,26 @@ import Sidebar from './Sidebar';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Sidebar Tests', () => {
-
     test('User Card Snapshot Test', () => {
         const sideBar = render(
             <MemoryRouter>
-                <Sidebar/>
+                <Sidebar />
             </MemoryRouter>
         );
 
-        expect(sideBar).toMatchSnapshot()
+        expect(sideBar).toMatchSnapshot();
     });
 
     test('Sidebar text and icon verification', () => {
         const sideBar = render(
             <MemoryRouter>
-                <Sidebar/>
+                <Sidebar />
             </MemoryRouter>
         );
 
-        sideBar.getByText("Home");
-        sideBar.getByText("Users");
-        sideBar.getByAltText("Home");
-        sideBar.getByAltText("Users");
-    })
-})
+        sideBar.getByText('Home');
+        sideBar.getByText('Users');
+        sideBar.getByAltText('Home');
+        sideBar.getByAltText('Users');
+    });
+});

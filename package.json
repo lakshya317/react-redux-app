@@ -26,9 +26,10 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
         "test": "react-scripts test",
-        "lint": "npx eslint .",
-        "lint:fix": "npx eslint --fix",
-        "prettier": "npx prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json"
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix",
+        "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json",
+        "format:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json"
     },
     "browserslist": {
         "production": [

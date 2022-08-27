@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Lint and Format:
+  Lint_and Format:
     name: Lint and Format
     runs-on: ubuntu-latest
     steps:

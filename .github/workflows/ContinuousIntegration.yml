@@ -27,7 +27,7 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
-          prettier_options: --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc.json
+          prettier_options: --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc.json
           only_changed: True
           same_commit: True
           github_token: ${{ secrets.PAT }}

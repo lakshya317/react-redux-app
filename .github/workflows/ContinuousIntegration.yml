@@ -27,7 +27,7 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
-          prettier_options: --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc.json
+          prettier_options: --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc.json
           only_changed: True
           same_commit: True
           github_token: ${{ secrets.PAT }}
@@ -57,3 +57,8 @@ jobs:
 
       - name: Test
         run: npm run test
+        env:
+          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
+          REACT_APP_API_HOST: ${{ secrets.REACT_APP_API_HOST }}
+          REACT_APP_PERSIST_STORE_ENCRYPTION_KEY: ${{ secrets.REACT_APP_PERSIST_STORE_ENCRYPTION_KEY }}
+          REACT_APP_PERSIST_CONFIG_SECRET: ${{ secrets.REACT_APP_PERSIST_CONFIG_SECRET }}

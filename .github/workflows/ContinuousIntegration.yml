@@ -1,0 +1,62 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+    - development
+  workflow_dispatch:
+
+jobs:
+  Lint_and_Format:
+    name: Lint and Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.17.0'
+
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Lint
+        run: npm run lint
+
+      - name: Format Check
+        run: npm run format:check
+
+  Quality_Assurance:
+    name: Quality Assurance
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
+          persist-credentials: false
+
+      - name: Use Node v12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Test
+        run: npm run test
+        env:
+          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
+          REACT_APP_API_HOST: ${{ secrets.REACT_APP_API_HOST }}
+          REACT_APP_PERSIST_STORE_ENCRYPTION_KEY: ${{ secrets.REACT_APP_PERSIST_STORE_ENCRYPTION_KEY }}
+          REACT_APP_PERSIST_CONFIG_SECRET: ${{ secrets.REACT_APP_PERSIST_CONFIG_SECRET }}

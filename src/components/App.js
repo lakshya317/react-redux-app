@@ -6,7 +6,7 @@ import AuthPage from './AuthPage/AuthPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PageNotFound from './PageNotFound/PageNotFound';
 import UserList from './UserList/UserList';
-import Profile from '../Profile/Profile';
+import Profile from './Profile/Profile';
 
 function App() {
     return (

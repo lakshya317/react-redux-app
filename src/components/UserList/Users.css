@@ -1,4 +1,4 @@
-.users-container{
+.users-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.users-card-container{
+.users-card-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,11 +17,11 @@
     padding: 20px;
 }
 
-.user-card-container:hover{
+.user-card-container:hover {
     cursor: pointer;
 }
 
-.user-card-container{
+.user-card-container {
     display: flex;
     flex-direction: row;
     margin: 20px;
@@ -32,7 +32,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
 }
 
-.user-card-avatar{
+.user-card-avatar {
     border: 2px solid var(--bs-body-color);
     border-radius: 50%;
     overflow: hidden;
@@ -42,19 +42,19 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
 }
 
-.user-info-container{
+.user-info-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.user-card-name{
+.user-card-name {
     color: var(--bs-body-color);
     font-size: 20px;
     font-weight: 600;
 }
 
-.user-card-email{
+.user-card-email {
     color: var(--bs-body-color);
     font-size: 12px;
     font-weight: 500;

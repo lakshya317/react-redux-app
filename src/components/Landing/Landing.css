@@ -1,18 +1,17 @@
-.landing{
+.landing {
     height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
-    font-family: "Verdana";
+    font-family: 'Verdana';
 }
 
 @font-face {
-    font-family: "Verdana";
-    src: local("Verdana"),
-    url("../../assets/fonts/Verdana.ttf") format("truetype");
+    font-family: 'Verdana';
+    src: local('Verdana'), url('../../assets/fonts/Verdana.ttf') format('truetype');
 }
 
-.landing-body{
+.landing-body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -20,41 +19,41 @@
     flex: 1 1 auto;
 }
 
-.landing-title{
+.landing-title {
     text-align: center;
     font-size: 30px;
     font-weight: 700;
 }
 
-.stack-container{
+.stack-container {
     width: 30%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.stack-group{
+.stack-group {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.stack-title{
+.stack-title {
     text-align: center;
     font-weight: 600;
 }
 
-.login-button-container{
+.login-button-container {
     display: flex;
     justify-content: center;
     flex-grow: 0.4;
 }
 
-.login-link{
-    align-self:flex-start;
+.login-link {
+    align-self: flex-start;
 }
 
-.login-link-button{
+.login-link-button {
     color: white;
     background-color: var(--shell-red);
     font-weight: 600;
@@ -66,5 +65,3 @@
 .no-tooltips {
     pointer-events: none;
 }
-
-

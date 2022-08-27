@@ -1,10 +1,9 @@
-import { setAuthUser } from "./authUser";
-import { setLoggedIn } from "./loggedIn";
-import { setDisplayError } from "./displayError";
-import { setLoading } from "./loading";
-import API from "../utils/API"
-import { handleGetAuthProfile } from "./userActions";
-
+import { setAuthUser } from './authUser';
+import { setLoggedIn } from './loggedIn';
+import { setDisplayError } from './displayError';
+import { setLoading } from './loading';
+import API from '../utils/API';
+import { handleGetAuthProfile } from './userActions';
 
 export function handleLogin(username, password) {
     return (dispatch) => {
@@ -14,44 +13,42 @@ export function handleLogin(username, password) {
                 if (response.token) {
                     dispatch(setLoggedIn(true));
                     dispatch(setLoading(false));
-                    dispatch(handleGetAuthProfile(response.token.slice(1+response.token.indexOf("X"))))
-                    localStorage.setItem("token", response.token)
-                }
-                else {
+                    dispatch(
+                        handleGetAuthProfile(response.token.slice(1 + response.token.indexOf('X')))
+                    );
+                    localStorage.setItem('token', response.token);
+                } else {
                     if (response.error) {
-                        console.log(response.error)
+                        console.log(response.error);
                         dispatch(setLoading(false));
-                        dispatch(setDisplayError("Invalid Credentials!"))
-                    }
-                    else {
-                        throw new Error("Invalid Response!")
+                        dispatch(setDisplayError('Invalid Credentials!'));
+                    } else {
+                        throw new Error('Invalid Response!');
                     }
                 }
             })
             .catch((err) => {
                 console.log(err);
                 dispatch(setLoading(false));
-                dispatch(setDisplayError("Errors Connecting to Server!"));
+                dispatch(setDisplayError('Errors Connecting to Server!'));
                 dispatch(setAuthUser({}));
                 dispatch(setLoggedIn(false));
-            })
-    }
+            });
+    };
 }
 
 export function handleLogout() {
     return (dispatch) => {
+        //Logout
+        dispatch(setAuthUser({}));
+        dispatch(setLoggedIn(false));
         dispatch(setLoading(true));
-        API.postLogout()
-            .then((status) => {
-                //Logout
-                dispatch(setAuthUser({}));
-                dispatch(setLoggedIn(false));
-                dispatch(setLoading(false));
-                localStorage.removeItem("token");
-                if (status !== 200) {
-                    dispatch(setDisplayError("Errors Connecting to Server!"));
-                }
-
-            })
-    }
+        API.postLogout().then((status) => {
+            dispatch(setLoading(false));
+            localStorage.removeItem('token');
+            if (status !== 200) {
+                dispatch(setDisplayError('Errors Connecting to Server!'));
+            }
+        });
+    };
 }

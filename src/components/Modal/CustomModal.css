@@ -1,33 +1,36 @@
-.custom-modal-title{
-    font-family: "Verdana";
+.custom-modal-title {
+    font-family: 'Verdana';
     font-weight: 600;
 }
 
-.modal-header{
+.modal-header {
     border-bottom: none;
 }
 
-.modal-body{
-    font-family: "Verdana";
+.modal-body {
+    font-family: 'Verdana';
     font-weight: 500;
 }
 
-.modal-footer{
+.modal-footer {
     display: flex;
     justify-content: center;
 }
 
-.modal-close, .modal-close:hover, .modal-close:focus, .modal-close:active:focus {
+.modal-close,
+.modal-close:hover,
+.modal-close:focus,
+.modal-close:active:focus {
     color: white;
     background-color: var(--shell-red);
     font-weight: 600;
     padding: 5px 10px;
     border: 2px solid var(--shell-red);
     border-radius: 4px;
-    outline:none;
-    box-shadow:none;
+    outline: none;
+    box-shadow: none;
 }
 
-.modal-close:focus{
-    border: 2px solid black;    
+.modal-close:focus {
+    border: 2px solid black;
 }

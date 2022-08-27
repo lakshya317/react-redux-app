@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import LoadingAnimation from '../components/Loading/Loading';
-import API from '../utils/API';
-import { setDisplayError } from '../action/displayError';
+import LoadingAnimation from '../Loading/Loading';
+import API from '../../utils/API';
+import { setDisplayError } from '../../action/displayError';
 import './Profile.css';
 
 const Profile = () => {

@@ -4,8 +4,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-self: flex-start;
-    width: 5vw;
+    width: 4vw;
+    min-width: 45px;
     border-right: 4px solid var(--shell-yellow);
+    flex-shrink: 0;
 }
 
 .sidebar-item {

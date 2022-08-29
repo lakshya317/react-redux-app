@@ -58,15 +58,13 @@ const UserList = () => {
                     })}
                 </div>
             )}
-            <div className="pagination-container">
-                <Pagination
-                    current={page}
-                    totalPages={totalPages}
-                    handlePageChange={handlePageChange}
-                    perPage={ITEMS_PER_PAGE}
-                    total={total}
-                />
-            </div>
+            <Pagination
+                current={page}
+                totalPages={totalPages}
+                handlePageChange={handlePageChange}
+                perPage={ITEMS_PER_PAGE}
+                total={total}
+            />
         </div>
     );
 };

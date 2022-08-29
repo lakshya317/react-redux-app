@@ -4,6 +4,8 @@
 
 [![Continuous Integration](https://github.com/lakshya317/react-redux-app/actions/workflows/ContinuousIntegration.yml/badge.svg)](https://github.com/lakshya317/react-redux-app/actions/workflows/ContinuousIntegration.yml)
 
+[![pages-build-deployment](https://github.com/lakshya317/lakshya317.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/lakshya317/lakshya317.github.io/actions/workflows/pages/pages-build-deployment)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

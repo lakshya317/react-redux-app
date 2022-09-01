@@ -4,6 +4,7 @@
     "homepage": "https://lakshya317.github.io/",
     "private": false,
     "dependencies": {
+        "@reduxjs/toolkit": "^1.8.5",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.3.0",
         "@testing-library/user-event": "^13.5.0",
@@ -24,12 +25,14 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
+        "deploy": "gh-pages -r https://github.com/lakshya317/lakshya317.github.io.git -b master -d build",
         "test": "react-scripts test",
+        "test:all": "react-scripts test --watchAll=false",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json",
-        "format:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json"
+        "format:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc.json",
+        "check": "npm run format && npm run lint && npm run test"
     },
     "browserslist": {
         "production": [

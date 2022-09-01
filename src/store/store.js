@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import storage from 'redux-persist/lib/storage';
@@ -26,5 +26,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-export const store = createStore(persistedReducer, middleware);
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: middleware
+});
 export const persistor = persistStore(store);

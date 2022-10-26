@@ -62,22 +62,22 @@ class API {
         }
     };
 
-    getUsers = async (pageNum, perPage) => {
-        //path
-        const path = '/users';
-        //url
-        const url = this.host + path;
+    // getUsers = async (pageNum, perPage) => {
+    //     //path
+    //     const path = '/users';
+    //     //url
+    //     const url = this.host + path;
 
-        //request
-        try {
-            const response = await fetch(`${url}?delay=2&page=${pageNum}&per_page=${perPage}`);
-            const parsedResponse = await response.json();
+    //     //request
+    //     try {
+    //         const response = await fetch(`${url}?delay=2&page=${pageNum}&per_page=${perPage}`);
+    //         const parsedResponse = await response.json();
 
-            return parsedResponse;
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    //         return parsedResponse;
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 }
 
 export default new API();
